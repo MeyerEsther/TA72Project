@@ -11,14 +11,8 @@ class MenuItemController extends AbstractController
     /**
      * @Route("/menu")
      */
-    use PDO;
     public function menu()
     {
-        $pdo = PDO::getInstance();
-        $req= "";
-        $pdo->prepare($req);
-        $pdo->execute();
-
          return $this->render('menu.html.twig');
     }
 }
