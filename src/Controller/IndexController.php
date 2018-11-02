@@ -13,7 +13,8 @@ class MenuItemController extends AbstractController
      */
     public function menu()
     {
-         return $this->render('menu.html.twig');
+
+        return $this->render('index.html.twig');
     }
 }
 

@@ -7550,6 +7550,21 @@ button.bg-dark:focus {
   width: 100% !important;
 }
 
+.map-responsive{
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+}
+
+.map-responsive iframe {
+    left:0;
+    top:0;
+    height:100%;
+    widht:100%;
+    position: absolute;
+}
+
 .w-auto {
   width: auto !important;
 }

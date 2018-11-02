@@ -1,0 +1,52 @@
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  background-color: white;
+}
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.5);
+}
+.nav-link {
+  padding-right: 4rem !important;
+  padding-left: 0.5rem;
+}
+.navbar-nav .nav-link {
+  padding-right: 0;
+  padding-left: 0;
+}
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+.boutonCreation {
+  margin: 0.5rem;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background-color: #f5f5f5;
+}
+
+
+.card-img-bottom {
+  color: #fff;
+  height: 20rem;
+  background: url(public/build/img/facebook-logo.png) center no-repeat;
+  background-size: cover;
+}
