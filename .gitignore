@@ -1,18 +1,19 @@
 
 ###> symfony/framework-bundle ###
-/.env
+.env
 /public/bundles/
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
 
-###> symfony/phpunit-bridge ###
-.phpunit
-/phpunit.xml
-###< symfony/phpunit-bridge ###
+.idea/
+*.iml
 
 ###> symfony/web-server-bundle ###
-/.web-server-pid
+.web-server-pid
 ###< symfony/web-server-bundle ###
 
+###> symfony/webpack-encore-pack ###
 /node_modules/
+/public/build/
+###< symfony/webpack-encore-pack ###
