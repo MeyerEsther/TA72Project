@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: ta72-mysql
+    restart: always
+    ports:
+    - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "ta72"
+    volumes:
+    - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
