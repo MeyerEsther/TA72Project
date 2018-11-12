@@ -2,11 +2,16 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
 
-app_lucky_number:
-    path: /lucky/number
-    controller: App\Controller\LuckyController::number
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   /login
 
-app_menu_item:
-    path: /menu
-    controller: App\Controller\MenuItemController
+auth0_login:
+    path:    /auth0/callback
+
+auth0_logout:
+    path: /auth0/logout
