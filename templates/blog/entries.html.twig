@@ -1,64 +1,71 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Blog Posts{% endblock %}
+{% block title %}Espace patient{% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="container" style="background-color: #FFFFFF ; margin-bottom: 100px">
         <div class="blog-header">
-            <h1 class="blog-title">Blog tutorial</h1>
-            <p class="lead blog-description">A basic description of the blog, built in Symfony, styled in Bootstrap 3, secured by <a href="http://auth0.com">Auth0</a>.</p>
+            <h1 class="blog-title" style="text-align: center">Espace patient</h1>
+            <p class="lead blog-description" style="text-align: center">
+                Retrouvez ici des articles et des conseils pour votre bien-être physique.
+            </p>
+        </div>
+    </div>
+
+    <div class="container" style="background-color: #FFFFFF;">
+
+        <div class=" blog-main" >
+            {% for blogPost in blogPosts %}
+                {% set paragraphs = blogPost.description|split('</p>') %}
+                {% set firstParagraph = paragraphs|first ~ '</p>' %}
+                <div class="blog-post " style="border-top: outset; border-top-color: #c0dddb; border-top-width: thin">
+                    <h2 class="blog-post-title" style="text-align: center; margin-top: 50px">
+                        <a href="{{ path('entry', {'slug': blogPost.slug}) }}">
+                            {{ blogPost.title }}
+                        </a>
+                    </h2>
+
+                    <div class="blog-post-meta"  style="text-align: center; font-weight: lighter; font-style: italic;">
+                        {{ blogPost.getUpdatedAt|date('F j, Y') }}
+                    </div>
+
+                    <div style="margin: 50px">
+                        {{ firstParagraph|raw }}
+                    </div>
+                    <a href="{{ path('entry', {'slug': blogPost.slug}) }}"><p style="text-align: right">Lire l'article</p></a>
+                </div>
+            {% else %}
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    You have no blog articles. Please log in and create an article.
+                </div>
+            {% endfor %}
+
+            {% set canPrevious = page > 1 %}
+            {% set canNext = (page * entryLimit) < totalBlogPosts %}
+
         </div>
 
-        <div class="row">
-            <div class="col-sm-8 blog-main">
-                {% for blogPost in blogPosts %}
-                    {% set paragraphs = blogPost.description|split('</p>') %}
-                    {% set firstParagraph = paragraphs|first ~ '</p>' %}
-                    <div class="blog-post">
-                        <h2 class="blog-post-title">
-                            <a href="{{ path('entry', {'slug': blogPost.slug}) }}">
-                                {{ blogPost.title }}
-                            </a>
-                        </h2>
-                        <p class="blog-post-meta">
-                            {{ blogPost.getUpdatedAt|date('F j, Y') }} by
-
-                            {% if blogPost.author %}
-                                <a href="{{ path('author', {'name': blogPost.author.username|url_encode }) }}">
-                                    {{ blogPost.author.name }}
-                                </a>
-                            {% else %}
-                                Unknown Author
-                            {% endif %}
-                        </p>
-                        {{ firstParagraph|raw }}<br />
-                        <a href="{{ path('entry', {'slug': blogPost.slug}) }}">Read more</a>
-                    </div>
-                {% else %}
-                    <div class="alert alert-danger" role="alert">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        <span class="sr-only">Error:</span>
-                        You have no blog articles. Please log in and create an article.
-                    </div>
-                {% endfor %}
-
-                {% set canPrevious = page > 1 %}
-                {% set canNext = (page * entryLimit) < totalBlogPosts %}
-                <nav>
-                    <ul class="pager">
-                        <li class="previous {% if canPrevious == false %}disabled{% endif %}">
-                            <a href="{% if canPrevious %}{{ path('entries', {'page': page - 1}) }}{% endif %}">
-                                <span aria-hidden="true">&larr;</span> Older
-                            </a>
+        <div class="container" style="margin-top: 100px">
+            <div class="row" style="display: flex; align-items: center; text-align: center">
+                <div class="col-md-6">
+                    <div class="previous {% if canPrevious == false %}disabled{% endif %}">
+                        <a href="{% if canPrevious %}{{ path('entries', {'page': page - 1}) }}{% endif %}">
+                            <span aria-hidden="true">&larr;</span> Voir les articles précedents
+                        </a>
                         </li>
-                        <li class="next {% if canNext == false %}disabled{% endif %}">
-                            <a href="{% if canNext %}{{ path('entries', {'page': page + 1}) }}{% endif %}">
-                                Newer <span aria-hidden="true">&rarr;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="next {% if canNext == false %}disabled{% endif %}">
+                        <a href="{% if canNext %}{{ path('entries', {'page': page + 1}) }}{% endif %}">
+                            Voir les articles suivants <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 {% endblock %}

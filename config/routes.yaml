@@ -1,6 +1,18 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+   path: /index
+   controller: App\Controller\IndexController
+
+contact:
+    path: /contact
+    controller: App\Controller\ContactController
+
+legalnotice:
+    path: /legalnotice
+    controller: App\Controller\LegalNoticeController
+
+patientspace:
+    path: /patientspace
+    controller: App\Controller\BlogController
 
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"

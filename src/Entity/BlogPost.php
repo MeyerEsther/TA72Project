@@ -25,7 +25,7 @@ class BlogPost
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=150)
      */
     private $title;
 
@@ -35,6 +35,7 @@ class BlogPost
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
+
 
     /**
      * @var string
@@ -107,29 +108,6 @@ class BlogPost
         return $this->title;
     }
 
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return BlogPost
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
 
     /**
      * Set description
@@ -202,6 +180,29 @@ class BlogPost
     {
         return $this->author;
     }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return BlogPost
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
 
     /**
      * Set createdAt

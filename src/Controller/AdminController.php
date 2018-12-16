@@ -42,7 +42,7 @@ class AdminController extends Controller
     {
         if ($this->authorRepository->findOneByUsername($this->getUser()->getUserName())) {
             // Redirect to dashboard.
-            $this->addFlash('error', 'Unable to create author, author already exists!');
+            $this->addFlash('error', 'Cet auteur existe déjà');
 
             return $this->redirectToRoute('homepage');
         }
@@ -58,7 +58,7 @@ class AdminController extends Controller
             $this->entityManager->flush($author);
 
             $request->getSession()->set('user_is_author', true);
-            $this->addFlash('success', 'Congratulations! You are now an author.');
+            $this->addFlash('success', 'Vous êtes renseigné comme auteur.');
 
             return $this->redirectToRoute('homepage');
         }
@@ -90,7 +90,7 @@ class AdminController extends Controller
             $this->entityManager->persist($blogPost);
             $this->entityManager->flush($blogPost);
 
-            $this->addFlash('success', 'Congratulations! Your post is created');
+            $this->addFlash('success', 'Votre article a été crée');
 
             return $this->redirectToRoute('admin_entries');
         }

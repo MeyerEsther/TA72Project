@@ -20,15 +20,18 @@
 
                 {{ form_start(form) }}
                 <div class="col-md-12">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-12">
                         {{ form_row(form.title) }}
-                    </div>
-                    <div class="form-group col-md-4">
-                        {{ form_row(form.slug) }}
                     </div>
                     <div class="form-group col-md-12">
                         {{ form_row(form.description) }}
                     </div>
+                    <div class="form-group col-md-12">
+                        {{ form_row(form.slug) }}
+                    </div>
+
+                    <textarea id="summernote" name="editordata"></textarea
+
                     <div class="form-group col-md-12">
                         {{ form_row(form.body) }}
                     </div>

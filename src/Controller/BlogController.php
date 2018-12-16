@@ -4,10 +4,10 @@ namespace App\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
-class BlogController extends Controller
+class BlogController extends AbstractController
 {
     /** @var integer */
     const POST_LIMIT = 5;
@@ -32,8 +32,8 @@ class BlogController extends Controller
     }
 
     /**
-     * @Route("/", name="homepage")
-     * @Route("/entries", name="entries")
+     * @Route("/patientspace", name="homepage")
+     * @Route("/patientspace/entries", name="entries")
      */
     public function entriesAction(Request $request)
     {
@@ -52,14 +52,14 @@ class BlogController extends Controller
     }
 
     /**
-     * @Route("/entry/{slug}", name="entry")
+     * @Route("/patientspace/entry/{slug}", name="entry")
      */
     public function entryAction($slug)
     {
         $blogPost = $this->blogPostRepository->findOneBySlug($slug);
 
         if (!$blogPost) {
-            $this->addFlash('error', 'Unable to find entry!');
+            $this->addFlash('error', 'Article introuvable');
 
             return $this->redirectToRoute('entries');
         }
@@ -70,14 +70,14 @@ class BlogController extends Controller
     }
 
     /**
-     * @Route("/author/{name}", name="author")
+     * @Route("/patientspace/author/{name}", name="author")
      */
     public function authorAction($name)
     {
         $author = $this->authorRepository->findOneByUsername($name);
 
         if (!$author) {
-            $this->addFlash('error', 'Unable to find author!');
+            $this->addFlash('error', 'Acteur introuvable');
             return $this->redirectToRoute('entries');
         }
 

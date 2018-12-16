@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% include "head.html.twig" %}
+    <title>Sarah Meyer - Contact</title>
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+{% include "navbar.html.twig" %}
+
+
+<!-- Masthead -->
+{% include "mhead.html.twig" %}
+
+
+<section class="features-icons bg-light text-center">
+    <div class="row" style="display: flex; align-items: center;">
+        <div class="col-md-6">
+            <div class="container" align="center">
+                <p class="lead mb-0">
+                    <br/>
+                    <i class="fas fa-phone fa-1x fa-fw"> </i>
+                    06 32 12 72 80
+                    <br/>
+                    <i class="far fa-envelope fa-1x fa-fw"> </i>
+                    sarah.meyer.osteo@gmail.com
+                    <br/>
+                    <i class="fab fa-facebook fa-1x fa-fw"> </i>
+                    Sarah Meyer Ostéopathe D.O
+                    <br/>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="container" align="center">
+                <p class="lead mb-0">
+                    <br/>
+                    <i class="fas fa-map-marked-alt fa-1x fa-fw"> </i>
+                    <br>
+                    3B rue des Acacias
+                    <br/>
+                    18570
+                    LA CHAPELLE SAINT URSIN
+                    <br/>
+                    <br/>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features-icons bg-white text-center">
+    <div class="row" style="display: flex; align-items: center;">
+        <div class="col-md-6">
+            <div class="container" align="center">
+                <h2 class="page-header text-center">N'hésitez pas à me contacter par mail</h2>
+            </div>
+            <div class="container mt-5" align="center">
+                <form class="form-horizontal" role="form" method="post" action="../src/Controller/ContactController.php">
+                    <fieldset>
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Votre Nom et votre prénom" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Votre adresse email" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="5" name="message" placeholder="Votre message"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                <input id="submit" name="submit" type="submit" value="Envoyer le mail" class="btn btn-sky btn-block" style="background-color: #c0dddb; box-shadow: 5px 5px 5px #bfbfbf;">
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6" >
+
+            <div class="container" align="center">
+                <div class="map-responsive" style="">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2717.9132095110403!2d2.319013415340925!3d47.06155283346326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47fa94c45f40dfe5%3A0x9116c8b372b7c98e!2s3B+Rue+des+Acacias%2C+18570+La+Chapelle-Saint-Ursin!5e0!3m2!1sfr!2sfr!4v1542134935865" width="500" height="450" frameborder="0" style="border:0" ></iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+</body>
+
+<!-- Footer -->
+{% include 'footer.html.twig' %}
+<!-- Bootstrap core JavaScript    -->
+
+
+</html>
