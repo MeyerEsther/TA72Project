@@ -6,6 +6,10 @@ contact:
     path: /contact
     controller: App\Controller\ContactController
 
+contact2:
+    path: /contact/form
+    controller: App\Controller\ContactController
+
 legalnotice:
     path: /legalnotice
     controller: App\Controller\LegalNoticeController
@@ -25,5 +29,7 @@ hwi_oauth_login:
 auth0_login:
     path:    /auth0/callback
 
+
 auth0_logout:
     path: /auth0/logout
+

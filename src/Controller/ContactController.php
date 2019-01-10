@@ -7,6 +7,14 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 
+ini_set("SMTP", "smtp.gmail.com");
+ini_set("smtp_port",465);
+ini_set("smtp_username","esther.m.e.meyer@gamil.com");
+ini_set("smtp_password","ornithorynque");
+ini_set("smtpSecure","ssl");
+
+
+
 class ContactController extends AbstractController
 {
     /**
@@ -18,13 +26,17 @@ class ContactController extends AbstractController
 
     }
 
-    public function post(Request $request, $errors)
+    /**
+     * @Route("/contact/form")
+     */
+    public function post(Request $request, $errors = null, \Swift_Mailer $mailer)
     {
         /*if(isset($_POST['Submit']))*/
         if ($request->isMethod('POST')){
             $name= $_POST['name'];
             $email= $_POST['email'];
-            $message= $_POST['message'];
+            $message = $_POST['message'];
+
 
 
             if ($email != ""){
@@ -37,7 +49,7 @@ class ContactController extends AbstractController
             }
 
             if ($name != ""){
-                $name = var_dump(filter_var($name, FILTER_SANITIZE_STRING));
+                $name = filter_var($name, FILTER_SANITIZE_STRING);
                 if ($name == "") {
                     $errors .= 'Nom invalide.<br/><br/>';
                 }
@@ -47,9 +59,9 @@ class ContactController extends AbstractController
             }
 
             if ($message != ""){
-                $message = var_dump(filter_var($message, FILTER_SANITIZE_STRING));
+                $message = filter_var($message, FILTER_SANITIZE_STRING);
                 if ($message == "") {
-                    $errors .= 'Veuillez entrer votre message.<br/>';
+                    $errors .= 'Message invalide.<br/>';
                 }
             }
             else {
@@ -57,18 +69,20 @@ class ContactController extends AbstractController
             }
 
             if (!$errors) {
-                $mail_to = 'esther.m.meyer@wanadoo.fr';
-                $subject = 'Nouveau mail envoyé depuis le site';
-                $message  = 'Mail de: ' . $_POST['name'] . "\n";
-                $message .= 'Email: ' . $_POST['email'] . "\n";
-                $message .= "Message:\n" . $_POST['message'] . "\n\n";
-                mail($to, $subject, $message);
 
-                echo "Merci pour votre email<br/><br/>";
+                $mail = (new \Swift_Message('Prise de contact depuis le site'))
+                    ->setFrom($email, $name)
+                    ->setTo('sarah.meyer.osteo@gmail.com')
+                    ->setBody("\n Nom de l'expéditeur: \n".$name ."\n Adresse e-mail de l'expéditeur: \n" .$email ."\n \n \n Message: \n" .$message);
+
+
+                $mailer->send($mail);
             } else {
                 echo '<div style="color: red">' . $errors . '<br/></div>';
             }
 
+
+            return $this->redirectToRoute('contact');
 
         }
     }

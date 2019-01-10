@@ -10,13 +10,18 @@
 
 {% include "mhead.html.twig" %}
 
-{% include "navbar_blog.html.twig" %}
+<div class="features-patient">
 
-{% block body %}{% endblock %}
+    {% include "navbar-blog.html.twig" %}
 
-{% block javascripts %}
+    {% block body %}{% endblock %}
+
+    {% block javascripts %}
+
 
     <script src="{{ asset('build/app.js') }}"></script>
+</div>
+
 
 {% endblock %}
 </body>
